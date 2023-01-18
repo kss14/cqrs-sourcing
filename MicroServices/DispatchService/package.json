@@ -1,0 +1,23 @@
+{
+  "name": "node-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "npx nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/node": "^7.26.0",
+    "amqplib": "0.5.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.6",
+    "nodemailer": "^6.8.0",
+    "btoa": "^1.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.2"
+  }
+}
