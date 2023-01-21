@@ -5,8 +5,9 @@ const Sentry = require("@sentry/node");
 const {MessageEventModel} = require("./src/events");
 const GetMessagesByOrderOfMostRecentQuery = require("./src/Query/GetMessagesByOrderOfMostRecentQuery");
 Sentry.init({
-    dsn: "http://c0ef338276fe46739bc4f8b008e8c71b@glitchtip.kmp.com:8000/1"
+    dsn: "http://9b819ce0be384b648e3a5b8f758ac073@glitchtip.kmp.com:8000/1"
 });
+//dsn: "http://c0ef338276fe46739bc4f8b008e8c71b@glitchtip.kmp.com:8000/1"
 const app = express();
 app.use(Sentry.Handlers.requestHandler());
 
@@ -42,11 +43,9 @@ app.post("/api/v1/messages", (req, res) => {
     res.json(message);
 });
 
-app.get("/api/v1/message/model", (req, res) => {
-    res.json(MessageEventModel);
-});
-
 app.get("/debug-sentry", function mainHandler(req, res) {
+  myUndefinedFunction();
+
     throw new Error("My first GlitchTip error!");
 });
 
