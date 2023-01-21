@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./MicroServices/DispatchService /app/DispatchService
+COPY ./DispatchService /app/DispatchService
 
 WORKDIR /app/DispatchService
 

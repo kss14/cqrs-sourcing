@@ -1,0 +1,64 @@
+{
+  "name": "MicroServices",
+  //
+  // Container definition
+  "dockerComposeFile": ["../MicroServices/docker-compose.yml", "../GlitchTip/docker-compose.yml"],
+  "workspaceFolder": "/app",
+  "service": "",
+  "forwardPorts": [8000, 8080, 8081],
+  "portsAttributes": {
+    "8000": {
+      "label": "GlitchTip"
+    },
+    "8080": {
+      "label": "Service Message"
+    },
+    "8081": {
+      "label": "Service Bid"
+    }
+  },
+  //
+  // Environement definition
+  "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Font
+        "editor.fontFamily": "Fira Code",
+        "editor.fontLigatures": true,
+        "editor.fontWeight": "500",
+        // Basic formating
+        "editor.formatOnSave": true,
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "editor.tabSize": 2,
+        // Formatters
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        //
+        "workbench.colorTheme": "Default Dark+",
+        "git.autofetch": "all",
+        "git.useEditorAsCommitInput": false,
+        "task.autoDetect": "off",
+        "task.allowAutomaticTasks": "off",
+        "editor.multiCursorModifier": "ctrlCmd",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.codeActionsOnSave": { "source.fixAll.eslint": true },
+        "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }]
+      },
+      "extensions": [
+        // javascript
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        // utilities
+        "ionutvmi.path-autocomplete",
+        "mikestead.dotenv",
+        "ms-azuretools.vscode-docker",
+        "mrmlnc.vscode-duplicate",
+        "sanaajani.taskrunnercode",
+        "eamodio.gitlens"
+      ]
+    }
+  }
+}

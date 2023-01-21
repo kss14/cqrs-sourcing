@@ -13,7 +13,7 @@ x-environment:
   PORT: 8000
   EMAIL_URL: "smtp://maildev:1025"
   DEFAULT_FROM_EMAIL: kss14@hotmail.fr
-  GLITCHTIP_DOMAIN: "http://glitchtip.kmp.com:8000"
+  GLITCHTIP_DOMAIN: "http://glitchtip.kmp.com:8000" # or http://127.0.0.1:8000 or http://IP_HOST:8000
   CELERY_WORKER_CONCURRENCY: 2 # Set to 2 to prevent excessive memory usage. Change it or remove to set it to the number of cpu cores.
   REDIS_URL: redis://glitchtip-redis:6379/0
   ENABLE_OPEN_USER_REGISTRATION: "False"
@@ -62,9 +62,9 @@ services:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      PGDATA: /var/lib/postgresql/data/pgdata
+      PGDATA: /var/lib/postgresql/data
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - glitchtip
     healthcheck:
@@ -148,3 +148,7 @@ services:
 networks:
   glitchtip:
     name: glitchtip
+
+volumes:
+  pgdata:
+    driver: local

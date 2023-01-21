@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./MicroServices/BidService /app/BidService
+COPY ./BidService /app/BidService
 
 WORKDIR /app/BidService
 

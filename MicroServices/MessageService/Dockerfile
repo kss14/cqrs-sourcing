@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./MicroServices/MessageService /app/MessageService
+COPY ./MessageService /app/MessageService
 
 WORKDIR /app/MessageService
 

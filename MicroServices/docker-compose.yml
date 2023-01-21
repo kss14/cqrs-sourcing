@@ -21,10 +21,10 @@ services:
     container_name: dispatcher
     build:
       context: .
-      dockerfile: ./MicroServices/DispatchService/Dockerfile
+      dockerfile: ./DispatchService/Dockerfile
     volumes:
       - ./node_modules:/app/node_modules
-      - ./MicroServices/_Common:/app/_Common
+      - ./_Common:/app/_Common
     environment:
       - MQ_URI=amqp://rabbitmq
       - MONGO_URI=mongodb://db:27017
@@ -36,10 +36,10 @@ services:
     container_name: admin
     build:
       context: .
-      dockerfile: ./MicroServices/AdminService/Dockerfile
+      dockerfile: ./AdminService/Dockerfile
     volumes:
       - ./node_modules:/app/node_modules
-      - ./MicroServices/_Common:/app/_Common
+      - ./_Common:/app/_Common
     environment:
       - MQ_URI=amqp://rabbitmq
       - MONGO_URI=mongodb://db:27017
@@ -51,10 +51,10 @@ services:
     container_name: bid
     build:
       context: .
-      dockerfile: ./MicroServices/BidService/Dockerfile
+      dockerfile: ./BidService/Dockerfile
     volumes:
       - ./node_modules:/app/node_modules
-      - ./MicroServices/_Common:/app/_Common
+      - ./_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017
     depends_on:
@@ -65,10 +65,10 @@ services:
     container_name: test
     build:
       context: .
-      dockerfile: ./MicroServices/MessageService/Dockerfile
+      dockerfile: ./MessageService/Dockerfile
     volumes:
       - ./node_modules:/app/node_modules
-      - ./MicroServices/_Common:/app/_Common
+      - ./_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017
     depends_on:

@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./MicroServices/AdminService /app/AdminService
+COPY ./AdminService /app/AdminService
 
 WORKDIR /app/AdminService
 
