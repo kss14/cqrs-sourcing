@@ -23,7 +23,7 @@ services:
       context: .
       dockerfile: ./DispatchService/Dockerfile
     volumes:
-      - ./node_modules:/app/node_modules
+      - ../node_modules:/app/node_modules
       - ./_Common:/app/_Common
     environment:
       - MQ_URI=amqp://rabbitmq
@@ -38,7 +38,7 @@ services:
       context: .
       dockerfile: ./AdminService/Dockerfile
     volumes:
-      - ./node_modules:/app/node_modules
+      - ../node_modules:/app/node_modules
       - ./_Common:/app/_Common
     environment:
       - MQ_URI=amqp://rabbitmq
@@ -53,7 +53,7 @@ services:
       context: .
       dockerfile: ./BidService/Dockerfile
     volumes:
-      - ./node_modules:/app/node_modules
+      - ../node_modules:/app/node_modules
       - ./_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017
@@ -67,7 +67,7 @@ services:
       context: .
       dockerfile: ./MessageService/Dockerfile
     volumes:
-      - ./node_modules:/app/node_modules
+      - ../node_modules:/app/node_modules
       - ./_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017

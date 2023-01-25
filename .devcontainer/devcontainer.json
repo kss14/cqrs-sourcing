@@ -2,9 +2,6 @@
   "name": "MicroServices",
   //
   // Container definition
-  "dockerComposeFile": ["../MicroServices/docker-compose.yml", "../GlitchTip/docker-compose.yml"],
-  "workspaceFolder": "/app",
-  "service": "",
   "forwardPorts": [8000, 8080, 8081],
   "portsAttributes": {
     "8000": {
@@ -19,7 +16,6 @@
   },
   //
   // Environement definition
-  "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
   "customizations": {
     "vscode": {
       "settings": {

@@ -22,6 +22,20 @@
 			"problemMatcher": [],
 			"label": "npm: build",
 			"detail": "pnpm install && pnpm run dc:glitchtip & pnpm run dc:microservices &"
+		},
+		{
+			"type": "npm",
+			"script": "dc:microservices",
+			"problemMatcher": [],
+			"label": "npm: dc:microservices",
+			"detail": "docker-compose -f ./MicroServices/docker-compose.yml up --build"
+		},
+		{
+			"type": "npm",
+			"script": "dc:glitchtip",
+			"problemMatcher": [],
+			"label": "npm: dc:glitchtip",
+			"detail": "docker-compose -f ./GlitchTip/docker-compose.yml up --build"
 		}
 	]
 }
