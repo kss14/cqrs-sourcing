@@ -12,7 +12,6 @@ const mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  host: "maildev",
   port: 1025,
 });
 
