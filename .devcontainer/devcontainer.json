@@ -2,7 +2,7 @@
   "name": "MicroServices",
   //
   // Container definition
-  "forwardPorts": [8000, 8080, 8081],
+  "forwardPorts": [8000, 8080, 8081, 8082],
   "portsAttributes": {
     "8000": {
       "label": "GlitchTip"
@@ -12,6 +12,9 @@
     },
     "8081": {
       "label": "Service Bid"
+    },
+    "8082": {
+      "label": "Service Bdd"
     }
   },
   //

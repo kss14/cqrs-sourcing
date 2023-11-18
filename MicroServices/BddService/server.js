@@ -1,7 +1,7 @@
 //src/server.js
 const app_bidService = require("./app");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 
 app_bidService.listen(port, () => {
   console.log("Running server BddService on port:", port);

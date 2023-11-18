@@ -1,5 +1,7 @@
 require("./MicroServices/MessageService/server");
 require("./MicroServices/BidService/server");
+require("./MicroServices/BddService/server");
+
 const mongoose = require("mongoose");
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 

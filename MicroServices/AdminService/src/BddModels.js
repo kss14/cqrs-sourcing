@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const stepSchema = new Schema({
   id: String,
-  idRef: String | null,
+  cloneId: String | null,
   lang: String,
   make: String,
   category: String,

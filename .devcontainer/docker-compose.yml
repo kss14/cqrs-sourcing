@@ -13,7 +13,7 @@ services:
       - "8081:8081"
       - "8082:8082"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./MicroServices/nginx.conf:/etc/nginx/nginx.conf
     extra_hosts:
       - "glitchtip.kmp.com:127.0.0.1"
     restart: always
@@ -22,10 +22,10 @@ services:
     container_name: dispatcher
     build:
       context: .
-      dockerfile: ./DispatchService/Dockerfile
+      dockerfile: ./MicroServices/DispatchService/Dockerfile
     volumes:
-      - ../node_modules:/app/node_modules
-      - ./_Common:/app/_Common
+      - ./node_modules:/app/node_modules
+      - ./MicroServices_Common:/app/_Common
     environment:
       - MQ_URI=amqp://rabbitmq
       - MONGO_URI=mongodb://db:27017
@@ -37,10 +37,10 @@ services:
     container_name: admin
     build:
       context: .
-      dockerfile: ./AdminService/Dockerfile
+      dockerfile: ./MicroServices/AdminService/Dockerfile
     volumes:
-      - ../node_modules:/app/node_modules
-      - ./_Common:/app/_Common
+      - ./node_modules:/app/node_modules
+      - ./MicroServices_Common:/app/_Common
     environment:
       - MQ_URI=amqp://rabbitmq
       - MONGO_URI=mongodb://db:27017
@@ -51,10 +51,10 @@ services:
     container_name: bdd
     build:
       context: .
-      dockerfile: ./BddService/Dockerfile
+      dockerfile: ./MicroServices/BddService/Dockerfile
     volumes:
-      - ../node_modules:/app/node_modules
-      - ./_Common:/app/_Common
+      - ./node_modules:/app/node_modules
+      - ./MicroServices/_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017
     depends_on:
@@ -65,10 +65,10 @@ services:
     container_name: bid
     build:
       context: .
-      dockerfile: ./BidService/Dockerfile
+      dockerfile: ./MicroServices/BidService/Dockerfile
     volumes:
-      - ../node_modules:/app/node_modules
-      - ./_Common:/app/_Common
+      - ./node_modules:/app/node_modules
+      - ./MicroServices/_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017
     depends_on:
@@ -79,10 +79,10 @@ services:
     container_name: test
     build:
       context: .
-      dockerfile: ./MessageService/Dockerfile
+      dockerfile: ./MicroServices/MessageService/Dockerfile
     volumes:
-      - ../node_modules:/app/node_modules
-      - ./_Common:/app/_Common
+      - ./node_modules:/app/node_modules
+      - ./MicroServices/_Common:/app/_Common
     environment:
       - MONGO_URI=mongodb://db:27017
     depends_on:

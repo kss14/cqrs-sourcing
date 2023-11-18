@@ -1,5 +1,6 @@
 const BidModel = require("./BidModel");
 const MessageModel = require("./MessageModel");
+const BddModel = require("./BddModels");
 
 class AdminService {
   addHighBid(bidEvent) {
@@ -24,13 +25,39 @@ class AdminService {
       console.log("--------------------------");
       return new MessageModel({
         messageId: messageEvent.id,
-        msg: messageEvent.amount,
+        msg: messageEvent.msg,
       }).save();
     } else {
       console.log("Message doesn't contain message");
       console.log("--------------------------");
       return Promise.resolve();
     }
+  }
+
+  addStep(stepEvent) {
+    if (stepEvent.msg && stepEvent.msg.trim() !== "") {
+      console.log("Adding step", stepEvent.context, stepEvent.content);
+      console.log("--------------------------");
+      return new BddModel["StepModel"]({
+        idRef: stepEvent.idRef,
+        lang: stepEvent.lang,
+        make: stepEvent.make,
+        category: stepEvent.category,
+        content: stepEvent.content,
+        arguments: stepEvent.arguments,
+        code: stepEvent.arguments,
+        updateAt: null,
+        createBy: stepEvent.userId,
+        updateBy: null
+      }).save();
+    } else {
+      console.log("Step doesn't contain step");
+      console.log("--------------------------");
+      return Promise.resolve();
+    }
+  }
+  getLastStepModel() {
+    return BddModel["StepModel"].find({});
   }
   getLastMessages() {
     return MessageModel.find({});

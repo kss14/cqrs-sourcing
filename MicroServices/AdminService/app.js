@@ -18,6 +18,11 @@ app.get("/getLastMessages", async (req, res) => {
   res.json(messages || {});
 });
 
+app.get("/getLastSteps", async (req, res) => {
+  const setps = await adminService.getLastStepss();
+  res.json(steps || {});
+});
+
 module.exports = app;
 
 (async () => {
@@ -52,6 +57,10 @@ module.exports = app;
         }
         if (msg.content.toString().indexOf('-messages"') !== -1) {
           adminService.addMessage(JSON.parse(msg.content.toString()))
+        }
+
+        if (msg.content.toString().indexOf('-steps"') !== -1) {
+          adminService.addStep(JSON.parse(msg.content.toString()))
         }
       }, {
         noAck: true

@@ -40,8 +40,8 @@ module.exports.CreateScenario = (id, scenario) => {
     title: scenario.title,
     tags: scenario.tags,
     steps: scenario.steps,
-    createBy: feature.userId,
-    updateBy: feature.userId
+    createBy: scenario.userId,
+    updateBy: scenario.userId
   };
 };
 
@@ -49,12 +49,15 @@ module.exports.CreateStep = (id, step) => {
   return {
     type: eventTypes.createStep,
     id,
+    idRef: step.idRef,
     lang: step.lang,
     make: step.make,
     category: step.category,
     content: step.content,
     arguments: step.arguments, //argument whith this  #...#, it is an argument secure.
-    createBy: feature.userId,
-    updateBy: feature.userId
+    code: step.arguments,
+    updateAt: null,
+    createBy: step.userId,
+    updateBy: null
   };
 };

@@ -6,11 +6,16 @@ module.exports = (event, view) => {
       if (event.id === view.id) {
         // Créez un nouveau step et ajoutez-le à la liste des steps
         const newStep = {
+          idRef: event.idRef,
           lang: event.lang,
           make: event.make,
           category: event.category,
           content: event.content,
           arguments: event.arguments,
+          code : event.code,
+          createAt: null,
+          createBy : event.createBy,
+          updateBy : null,
         };
         return {
           ...view,
@@ -31,6 +36,9 @@ module.exports = (event, view) => {
               category: event.category,
               content: event.content,
               arguments: event.arguments,
+              code : event.code,
+              createBy : event.createBy,
+              updateBy : event.updateBy,
             };
           }
           return step;
@@ -63,6 +71,9 @@ module.exports = (event, view) => {
           category: event.category,
           content: event.content,
           arguments: event.arguments,
+          code : event.code,
+          createBy : event.createBy,
+          updateBy : event.updateBy,
         };
         return {
           ...view,

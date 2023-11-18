@@ -21,6 +21,21 @@ app.post("/api/v1/feature", (req, res) => {
   res.json(feature);
 });
 
+app.post("/api/v1/step", (req, res) => {
+  const step = req.body;
+  const prepareStepCommand = new CreateStepCommand(step);
+  // We want to allow maximum throughput so we don't wait for the write to happen before returning a response.
+  wait(2000, () => {
+    console.log("Placing step", step);
+    console.log("--------------------------");
+    console.log(prepareFeatureCommand)
+    commandService.runCommand(prepareStepCommand)
+  });
+
+  res.json(step);
+});
+
+
 module.exports = app;
 
 const wait = (timeout, fn) => {
