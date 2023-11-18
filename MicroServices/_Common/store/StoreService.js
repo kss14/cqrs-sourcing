@@ -21,7 +21,7 @@ try {
 try {
     viewModel = require("../../BddService/src/viewModel");
     const {FeatureEventModel, ScenarioEventModel, StepEventModel} = require("../../BddService/src/events");
-    eventModel = {FeatureEventModel, ScenarioEventModel, StepEventModel}
+    eventModel = [FeatureEventModel, ScenarioEventModel, StepEventModel]
     storeEvent = require("../../BddService/src/store")
 } catch (e) {
 }
@@ -58,9 +58,17 @@ class StoreService {
         return viewModel['StepModel'].findOne({}).sort({"createAt": "desc"});
     }
 
-    getMessagesByOrderOfMostRecentView(options) {
-        console.log(['step', options])
-        return eventModel.find(options);
+    getFeaturesByOrderOfMostRecentView(options) {
+        console.log(['features', options])
+        return eventModel[0].find(options);
+    }
+    getScenariosByOrderOfMostRecentView(options) {
+        console.log(['scenarios', options])
+        return eventModel[1].find(options);
+    }
+    getStepsByOrderOfMostRecentView(options) {
+        console.log(['steps', options])
+        return eventModel[2].find(options);
     }
 }
 

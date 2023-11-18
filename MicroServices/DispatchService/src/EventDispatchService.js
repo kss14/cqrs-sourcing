@@ -28,10 +28,36 @@ class EventDispatchService {
     }
   }
 
+  findUnsentFeatureEvents(dispatch) {
+    if (dispatch) {
+      return this.buildGetFetch('http://bdd:3002/api/v1/features/query',{ createdAt: { $gt: dispatch.createdAt }})
+    } else {
+      return this.buildGetFetch('http://bdd:3002/api/v1/features/query',{})
+    }
+  }
+  findUnsentScenarioEvents(dispatch) {
+    if (dispatch) {
+      return this.buildGetFetch('http://bdd:3002/api/v1/scenarios/query',{ createdAt: { $gt: dispatch.createdAt }})
+    } else {
+      return this.buildGetFetch('http://bdd:3002/api/v1/scenarios/query',{})
+    }
+  }
+  findUnsentStepEvents(dispatch) {
+    if (dispatch) {
+      return this.buildGetFetch('http://bdd:3002/api/v1/steps/query',{ createdAt: { $gt: dispatch.createdAt }})
+    } else {
+      return this.buildGetFetch('http://bdd:3002/api/v1/steps/query',{})
+    }
+  }
+
+
   async findAllUnsentEvents(dispatch) {
     let unsentEvents = []
     let findUnsentBidEvents =  await this.findUnsentBidEvents(dispatch)
     let findUnsentMessageEvents =  await this.findUnsentMessageEvents(dispatch)
+    let findUnsentFeatureEvents =  await this.findUnsentFeatureEvents(dispatch)
+    let findUnsentScenarioEvents =  await this.findUnsentScenarioEvents(dispatch)
+    let findUnsentStepEvents =  await this.findUnsentStepEvents(dispatch)
 
     if(findUnsentBidEvents.length > 0) {
       findUnsentBidEvents.forEach(function(event) {
@@ -39,6 +65,29 @@ class EventDispatchService {
       });
       unsentEvents = unsentEvents.concat(findUnsentBidEvents)
     }
+
+    if(findUnsentFeatureEvents.length > 0) {
+      findUnsentFeatureEvents.forEach(function(event) {
+        event.collectionName = "featureevents";
+      });
+      unsentEvents = unsentEvents.concat(findUnsentFeatureEvents)
+    }
+
+    if(findUnsentScenarioEvents.length > 0) {
+      findUnsentScenarioEvents.forEach(function(event) {
+        event.collectionName = "scenarioevents";
+      });
+      unsentEvents = unsentEvents.concat(findUnsentScenarioEvents)
+    }
+
+    if(findUnsentStepEvents.length > 0) {
+      findUnsentStepEvents.forEach(function(event) {
+        event.collectionName = "stepevents";
+      });
+      unsentEvents = unsentEvents.concat(findUnsentStepEvents)
+    }
+
+
     if(findUnsentMessageEvents.length > 0){
       findUnsentMessageEvents.forEach(function(event) {
         event.collectionName = "messageevents";

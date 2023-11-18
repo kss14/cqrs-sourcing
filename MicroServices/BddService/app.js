@@ -2,7 +2,7 @@
 const express = require("express");
 const atob = require("atob");
 const app = express();
-const { GetFeaturesQuery,GetFeatureQuery, GetTagsQuery,GetScenariosQuery, CreateStepCommand, queryService, CreateFeatureCommand, commandService } = require("./src/_libs");
+const { GetFeaturesByOrderOfMostRecentQuery, GetScenariosByOrderOfMostRecentQuery, GetStepsByOrderOfMostRecentQuery, CreateStepCommand, queryService, CreateFeatureCommand, commandService } = require("./src/_libs");
 app.use(express.json());
 
 
@@ -18,6 +18,27 @@ app.post("/api/v1/feature", (req, res) => {
     commandService.runCommand(prepareFeatureCommand)
   });
 
+  res.json(feature);
+});
+app.get("/api/v1/features/query", async (req, res) => {
+  const q = new GetFeaturesByOrderOfMostRecentQuery(JSON.parse(atob(decodeURIComponent(req.query.data))));
+  console.log("Getting list features aren't dispatched");
+  console.log("--------------------------");
+  const feature = await queryService.runQuery(q);
+  res.json(feature);
+});
+app.get("/api/v1/scenarios/query", async (req, res) => {
+  const q = new GetScenariosByOrderOfMostRecentQuery(JSON.parse(atob(decodeURIComponent(req.query.data))));
+  console.log("Getting list Scenarios aren't dispatched");
+  console.log("--------------------------");
+  const feature = await queryService.runQuery(q);
+  res.json(feature);
+});
+app.get("/api/v1/steps/query", async (req, res) => {
+  const q = new GetStepsByOrderOfMostRecentQuery(JSON.parse(atob(decodeURIComponent(req.query.data))));
+  console.log("Getting list steps aren't dispatched");
+  console.log("--------------------------");
+  const feature = await queryService.runQuery(q);
   res.json(feature);
 });
 

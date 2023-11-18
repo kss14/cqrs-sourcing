@@ -5,6 +5,9 @@ const { queueAttachToEvent } = require("../_Common/configs");
 let DispatchEvent = {}
 DispatchEvent.BidDispatchEvent = require("./src/serviceDipatchEvent/BidDispatchEvent");
 DispatchEvent.MessageDispatchEvent = require("./src/serviceDipatchEvent/MessageDispatchEvent");
+DispatchEvent.FeatureDispatchEvent = require("./src/serviceDipatchEvent/FeatureDispatchEvent");
+DispatchEvent.ScenarioDispatchEvent = require("./src/serviceDipatchEvent/ScenarioDispatchEvent");
+DispatchEvent.StepDispatchEvent = require("./src/serviceDipatchEvent/StepDispatchEvent");
 const eventDispatchService = new EventDispatchService();
 
 (async () => {
